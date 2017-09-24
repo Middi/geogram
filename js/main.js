@@ -5,15 +5,16 @@ var url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${
 
 
 
-$(function() {
-    
+$(function () {
+
     // Ajax Call
     function request() {
         $.ajax({
             type: 'GET',
             url: url,
             dataType: 'jsonp',
-            success: function(response){
+            success: function (response) {
+                console.log(response);
                 build(response);
             }
         });
@@ -22,10 +23,13 @@ $(function() {
     // Build DOM, Called by request function
     function build(response) {
         response.data.forEach(function (item) {
-            $(`<p>${item.likes.count}</p>`).appendTo($('.data'));
+            $(`<article>
+                <img src='${item.images.standard_resolution.url}'/>
+                <p>${item.likes.count} - Likes</p>
+               </article>`).appendTo($('.data'));
         });
     }
-    
+
     // Call request
     request();
 
