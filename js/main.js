@@ -46,20 +46,25 @@ $(function () {
             <p>${item.likes.count} - Likes</p>
            </article>`;
            
-            // If request was called with defaultCity
-            if(city){
-                $(article).appendTo($('.data'));
-            }
-            // Else check the objects location name against the input value
-            else if(item.location.name.toLowerCase().indexOf(geolocation) > -1) {
-                $(article).appendTo($('.data'));
-            }
+            buildDom(article, item, city);
         });
     }
 
+    
+    function buildDom(article, item, city){
+        // If request was called with defaultCity
+        if(city){
+            $(article).appendTo($('.data'));
+        }
+        // Else check the objects location name against the input value
+        else if(item.location.name.toLowerCase().indexOf(geolocation) > -1) {
+            $(article).appendTo($('.data'));
+        }
+    }
+
+
     // Call request
     request(defaultCity);
-
 
     // ----------------
     // Get Input
