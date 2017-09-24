@@ -26,20 +26,33 @@ $(function () {
 
     // Build DOM, Called by request function
     function build(response, city) {
+
         response.data.forEach(function (item) {
+
+            var media;
+            
+            if(item.videos){
+                media = `<video width="320" height="240" controls>
+                <source src="${item.videos.standard_resolution.url}" type="video/mp4">
+              Your browser does not support the video tag.
+              </video>`;
+            }
+            else {
+                media = `<img src='${item.images.standard_resolution.url}'/>`;
+            }
+
+            var article = `<article>
+            ${media}
+            <p>${item.likes.count} - Likes</p>
+           </article>`;
+           
             // If request was called with defaultCity
             if(city){
-                $(`<article>
-                <img src='${item.images.standard_resolution.url}'/>
-                <p>${item.likes.count} - Likes</p>
-               </article>`).appendTo($('.data'));
+                $(article).appendTo($('.data'));
             }
             // Else check the objects location name against the input value
             else if(item.location.name.toLowerCase().indexOf(geolocation) > -1) {
-                $(`<article>
-                <img src='${item.images.standard_resolution.url}'/>
-                <p>${item.likes.count} - Likes</p>
-               </article>`).appendTo($('.data'));
+                $(article).appendTo($('.data'));
             }
         });
     }
