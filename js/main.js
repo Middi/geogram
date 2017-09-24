@@ -3,29 +3,44 @@ var token = '178595410.7e82061.56428f51fa2d4779856bf0af509aa91c';
 
 var url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${token}`;
 
-var geolocation = "knottingley";
+var geolocation;
+
+// Default location
+var defaultCity = 'Knottingley';
 
 
 $(function () {
 
     // Ajax Call
-    function request() {
+    function request(city) {
         $.ajax({
             type: 'GET',
             url: url,
             dataType: 'jsonp',
             success: function (response) {
                 console.log(response);
-                build(response);
+                build(response, city);
             }
         });
     }
 
-    // Build DOM, Called by request function
-    function build(response) {
-        response.data.forEach(function (item) {
+    // Clear DOM
+    function clear() {
+        $('.data').empty();
+    }
 
-            if(item.location.name.toLowerCase() === geolocation) {
+    // Build DOM, Called by request function
+    function build(response, city) {
+        response.data.forEach(function (item) {
+            // If request was called with defaultCity
+            if(city){
+                $(`<article>
+                <img src='${item.images.standard_resolution.url}'/>
+                <p>${item.likes.count} - Likes</p>
+               </article>`).appendTo($('.data'));
+            }
+            // Else check the objects location name against the input value
+            else if(item.location.name.toLowerCase() === geolocation) {
                 $(`<article>
                 <img src='${item.images.standard_resolution.url}'/>
                 <p>${item.likes.count} - Likes</p>
@@ -35,7 +50,25 @@ $(function () {
     }
 
     // Call request
-    request();
+    request(defaultCity);
 
+
+    // Get Input
+
+    // --- On Enter Key --- //
+    $("input").on("keydown", function search(e) {
+        if (e.keyCode === 13) {
+            clear();
+            // if input is not empty then call the request with the value
+            if ($('input').val() !== "") {
+                geolocation = $("input").val().toLowerCase();
+                request();
+            }
+            // if it is empty, use default value
+            else {
+                request(defaultCity);
+            }
+        }
+    });
 
 });
