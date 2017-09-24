@@ -35,7 +35,7 @@ $(function () {
                </article>`).appendTo($('.data'));
             }
             // Else check the objects location name against the input value
-            else if(item.location.name.toLowerCase() === geolocation) {
+            else if(item.location.name.toLowerCase().indexOf(geolocation) > -1) {
                 $(`<article>
                 <img src='${item.images.standard_resolution.url}'/>
                 <p>${item.likes.count} - Likes</p>
