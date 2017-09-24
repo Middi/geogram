@@ -5,14 +5,24 @@ $(function() {
     var url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${token}`;
 
     
-    $.ajax({
-        type: 'GET',
-        url: url,
-        dataType: 'jsonp',
-        success: function(response){
-            console.log(response);
-        }
-    });
+    function request() {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'jsonp',
+            success: function(response){
+                build(response);
+            }
+        });
+    }
+
+    function build(response) {
+        response.data.forEach(function (item) {
+            $(`<p>${item.likes.count}</p>`).appendTo($('.data'));
+        });
+    }
     
+    request();
+
 
 });
