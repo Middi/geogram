@@ -3,6 +3,7 @@ var token = '178595410.7e82061.56428f51fa2d4779856bf0af509aa91c';
 var url = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${token}`;
 var geolocation;
 var defaultCity = 'Knottingley';
+var instaCoords = [];
 
 
 $(function () {
@@ -29,17 +30,28 @@ $(function () {
 
         response.data.forEach(function (item) {
 
+
+            var lat = item.location.latitude;
+            var lng = item.location.longitude;
+
+            instaCoords.push({
+                coords: {lat, lng},
+                content:`<h1>${item.user.username}</h1>
+                <p>${item.caption.text}</p>`
+            });
+
             var media;
             
             if(item.videos){
-                media = `<video width="320" height="240" controls>
+                media = `<video class="thumb"  controls>
                 <source src="${item.videos.standard_resolution.url}" type="video/mp4">
               Your browser does not support the video tag.
               </video>`;
             }
             else {
-                media = `<img src='${item.images.standard_resolution.url}'/>`;
+                media = `<img class="thumb" src='${item.images.standard_resolution.url}'/>`;
             }
+
 
             var article = `<article>
             ${media}
@@ -47,10 +59,11 @@ $(function () {
            </article>`;
            
             buildDom(article, item, city);
+            initMap();
         });
     }
 
-    
+
     function buildDom(article, item, city){
         // If request was called with defaultCity
         if(city){
@@ -85,6 +98,54 @@ $(function () {
             }
         }
     });
+    
+
+
+    // -------------
+    // Google Maps
+    // -------------
+
+    function initMap(){
+        // Map options
+        var options = {
+          zoom:10,
+          center:{lat:53.7071,lng:-1.2437}
+        }
+  
+        // New map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+  
+        // Array of markers
+        var markers = instaCoords;
+  
+        // Loop through markers
+        for(var i = 0;i < markers.length;i++){
+          // Add marker
+          addMarker(markers[i]);
+        }
+  
+        // Add Marker Function
+        function addMarker(props){
+          var marker = new google.maps.Marker({
+            position:props.coords,
+            map:map,
+          });
+  
+          // Check content
+          if(props.content){
+            var infoWindow = new google.maps.InfoWindow({
+              content:props.content
+            });
+  
+            marker.addListener('click', function(){
+              infoWindow.open(map, marker);
+            });
+          }
+        }
+      }
+
+
+      initMap();
 
 });
 
