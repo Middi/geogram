@@ -15,6 +15,7 @@ $(function () {
             dataType: 'jsonp',
             success: function (response) {
                 console.log(response);
+                instaCoords = [];
                 build(response, city);
             }
         });
@@ -143,8 +144,5 @@ $(function () {
           }
         }
       }
-
-
-      initMap();
 
 });
