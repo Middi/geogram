@@ -15,7 +15,6 @@ $(function () {
             dataType: 'jsonp',
             success: function (response) {
                 console.log(response);
-                instaCoords = [];
                 build(response, city);
             }
         });
@@ -29,12 +28,13 @@ $(function () {
     // Build DOM, Called by request function
     function build(response, city) {
 
+        instaCoords = [];
         response.data.forEach(function (item) {
 
 
             var lat = item.location.latitude;
             var lng = item.location.longitude;
-
+            
             instaCoords.push({
                 coords: {lat, lng},
                 content:`<h1>${item.user.username}</h1>
@@ -55,8 +55,14 @@ $(function () {
 
 
             var article = `<article>
+            <figure>
             ${media}
+        
             <p>${item.likes.count} - Likes</p>
+            </figure>
+            <div class="content">
+            <p>wefef efewf Your browser does not support the video </p>
+            </div>
            </article>`;
            
             buildDom(article, item, city);
@@ -107,6 +113,7 @@ $(function () {
     // -------------
 
     function initMap(){
+        var markers = [];
         // Map options
         var options = {
           zoom:10,
@@ -117,7 +124,7 @@ $(function () {
         var map = new google.maps.Map(document.getElementById('map'), options);
   
         // Array of markers
-        var markers = instaCoords;
+        markers = instaCoords;
   
         // Loop through markers
         for(var i = 0;i < markers.length;i++){
