@@ -56,12 +56,12 @@ $(function () {
 
             var article = `<article>
             <figure>
-            ${media}
-        
-            <p>${item.likes.count} - Likes</p>
+                ${media}
+            
+                <p>${item.likes.count} - Likes</p>
             </figure>
             <div class="content">
-            <p>wefef efewf Your browser does not support the video </p>
+                <p>wefef efewf Your browser does not support the video </p>
             </div>
            </article>`;
            

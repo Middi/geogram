@@ -27,11 +27,10 @@ main {
 }
 
 article {
-    margin: 10px;
-    height: 180px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-      
+    margin: 6px;
+    height: auto;
+    display: flex;
+    border: 1px solid red;
 }
 
 figure {
@@ -40,5 +39,6 @@ figure {
 
 .content {
     width: 180px;
+    overflow: hidden;
     display: inline-block;
 }

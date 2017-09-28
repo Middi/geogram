@@ -60,14 +60,17 @@ main {
   padding: 10px; }
 
 article {
-  margin: 10px;
-  height: 180px;
-  display: grid;
-  grid-template-columns: 1fr 1fr; }
+  margin: 6px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid red; }
 
 figure {
   display: inline-block; }
 
 .content {
   width: 180px;
+  overflow: hidden;
   display: inline-block; }
