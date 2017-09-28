@@ -1,8 +1,10 @@
 @import "normalise";
+@import "colors";
+@import "cards";
+
 body {
     display: grid;
     grid-template-columns: 1fr 1fr;
-      
 }
 
 #map {
@@ -24,21 +26,4 @@ main {
     flex-wrap: wrap;
     margin-top: 40px;
     padding: 10px;
-}
-
-article {
-    margin: 6px;
-    height: auto;
-    display: flex;
-    border: 1px solid red;
-}
-
-figure {
-    display: inline-block;
-}
-
-.content {
-    width: 180px;
-    overflow: hidden;
-    display: inline-block;
 }

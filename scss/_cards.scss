@@ -1,0 +1,35 @@
+article {
+    margin: 6px;
+    height: auto;
+    display: flex;
+    border: 1px solid red;
+    font-family: 'Roboto', sans-serif;
+}
+
+figure {
+    display: inline-block;
+    text-align: right;
+}
+
+figcaption {
+    padding: 4px;
+}
+
+.fig-cap {
+    color: $muted;
+}
+
+.fa {
+    padding-left: 4px;
+    color: $muted;
+}
+
+.fa-heart {
+    color: $heart;
+}
+
+.content {
+    width: 180px;
+    overflow: hidden;
+    display: inline-block;
+}

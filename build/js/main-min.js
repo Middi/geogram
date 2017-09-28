@@ -57,8 +57,10 @@ $(function () {
             var article = `<article>
             <figure>
                 ${media}
-            
-                <p>${item.likes.count} - Likes</p>
+                <figcaption>
+                    <p class="fig-cap"><i class="fa fa-comment" aria-hidden="true"></i> ${item.comments.count}
+                    <i class="fa fa-heart" aria-hidden="true"></i> ${item.likes.count}</p>
+                </figcaption>
             </figure>
             <div class="content">
                 <p>wefef efewf Your browser does not support the video </p>

@@ -34,6 +34,37 @@ input, select {
 a:focus, button:focus {
   outline: none; }
 
+article {
+  margin: 6px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid red;
+  font-family: 'Roboto', sans-serif; }
+
+figure {
+  display: inline-block;
+  text-align: right; }
+
+figcaption {
+  padding: 4px; }
+
+.fig-cap {
+  color: #aaaaaa; }
+
+.fa {
+  padding-left: 4px;
+  color: #aaaaaa; }
+
+.fa-heart {
+  color: #e74275; }
+
+.content {
+  width: 180px;
+  overflow: hidden;
+  display: inline-block; }
+
 body {
   display: grid;
   grid-template-columns: 1fr 1fr; }
@@ -58,19 +89,3 @@ main {
       flex-wrap: wrap;
   margin-top: 40px;
   padding: 10px; }
-
-article {
-  margin: 6px;
-  height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid red; }
-
-figure {
-  display: inline-block; }
-
-.content {
-  width: 180px;
-  overflow: hidden;
-  display: inline-block; }
