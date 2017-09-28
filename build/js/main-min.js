@@ -53,17 +53,29 @@ $(function () {
                 media = `<img class="thumb" src='${item.images.standard_resolution.url}'/>`;
             }
 
+            
+            var caption = item.caption.text;
+
+            // change new lines to <br>
+            caption = caption.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+            // remove the hashtags
+            caption = caption.slice(0, caption.indexOf("<br />."));
+
 
             var article = `<article>
             <figure>
                 ${media}
                 <figcaption>
-                    <p class="fig-cap"><i class="fa fa-comment" aria-hidden="true"></i> ${item.comments.count}
-                    <i class="fa fa-heart" aria-hidden="true"></i> ${item.likes.count}</p>
+                    <p class="fig-cap">
+                        <i class="fa fa-comment" aria-hidden="true"></i> ${item.comments.count}
+
+                        <i class="fa fa-heart" aria-hidden="true"></i> ${item.likes.count}
+                    </p>
                 </figcaption>
             </figure>
             <div class="content">
-                <p>wefef efewf Your browser does not support the video </p>
+                <p>${caption}</p>
             </div>
            </article>`;
            
