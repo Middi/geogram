@@ -53,7 +53,6 @@ $(function () {
                 media = `<img class="thumb" src='${item.images.standard_resolution.url}'/>`;
             }
 
-            
             var caption = item.caption.text;
 
             // change new lines to <br>
@@ -80,7 +79,7 @@ $(function () {
            </article>`;
            
             buildDom(article, item, city);
-            initMap();
+            initMap(caption);
         });
     }
 
@@ -100,16 +99,6 @@ $(function () {
     // Call request
     request(defaultCity);
 
-
-    // $( "#data" ).on( "click", "figure", function( event ) {
-    //     event.preventDefault();
-    //     if($(this).next().hasClass('show')){
-    //         $(this).next().removeClass('show', 500, "easeOut" );
-    //     }
-    //     else {
-    //         $(this).next().addClass('show', 500, "easeIn" );
-    //     }
-    // });
 
     // ----------------
     // Get Input
@@ -137,7 +126,7 @@ $(function () {
     // Google Maps
     // -------------
 
-    function initMap(){
+    function initMap(caption){
         var markers = [];
         // Map options
         var options = {
@@ -163,11 +152,18 @@ $(function () {
             position:props.coords,
             map:map,
           });
+
+          var caption = props.content;
+
+          // change new lines to <br>  
+          caption = caption.replace(/(?:\r\n|\r|\n)/g, '<br />');
+          // remove the hashtags
+          caption = caption.slice(0, caption.indexOf("<br />."));
   
           // Check content
-          if(props.content){
+          if(caption){
             var infoWindow = new google.maps.InfoWindow({
-              content:props.content
+              content:caption
             });
   
             marker.addListener('click', function(){
@@ -176,5 +172,4 @@ $(function () {
           }
         }
       }
-
 });
