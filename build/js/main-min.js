@@ -162,19 +162,27 @@ $(function () {
         var date = [];
         for (var i = 0; i < item.data.length; i++) {
             data.push(item.data[i].likes.count);
-            date.push(item.data[i].created_time);
+
+            var formatDate = new Date(parseInt(item.data[i].created_time) * 1000);
+
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var year = formatDate.getFullYear();
+            var month = months[formatDate.getMonth()];
+            var ate = formatDate.getDate();
+            var time = month + ', ' + ate + ' ' + year;
+            date.push(time);
         }
 
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: date,
+                labels: date.reverse(),
                 datasets: [{
-                    label: "My First dataset",
-                    data: data,
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-                    borderColor: ['rgba(255,99,132,1)'],
+                    label: "Likes",
+                    data: data.reverse(),
+                    backgroundColor: ['rgba(231, 66, 117, 0.2)'],
+                    borderColor: ['rgba(231, 66, 117, 1.0)'],
                     borderWidth: 1
                 }]
             },

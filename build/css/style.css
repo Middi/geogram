@@ -120,6 +120,7 @@ input {
 
 main {
   height: 100vh;
+  padding: 20px;
   overflow: scroll; }
 
 .thumb {
@@ -129,12 +130,12 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-top: 40px;
-  padding: 10px; }
+  margin-top: 20px; }
 
 .marker-thumb {
   width: 100px;
