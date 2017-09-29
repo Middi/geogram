@@ -81,23 +81,35 @@ figcaption {
   padding: 6px; }
 
 header {
-  height: 50px;
-  width: 100%; }
+  width: 100%;
+  border-bottom: 1px solid rgba(157, 157, 157, 0.4); }
 
 .container {
-  width: 1000px;
-  margin: 0 auto;
-  text-align: center; }
+  padding: 14px 20px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
 
 .logo {
   display: inline-block;
   font-family: 'Roboto', sans-serif;
   font-size: 1.4rem;
-  font-weight: 300;
-  padding-left: 6px; }
+  font-weight: 300; }
 
 strong {
   font-weight: 500; }
+
+input {
+  width: 240px;
+  border: none;
+  font-size: 1rem;
+  background-color: white;
+  border: 1px solid rgba(55, 55, 55, 0.4);
+  padding: 4px;
+  margin: 0 8px; }
 
 .wrapper {
   display: grid;
