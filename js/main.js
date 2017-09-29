@@ -100,6 +100,17 @@ $(function () {
     // Call request
     request(defaultCity);
 
+
+    $( "#data" ).on( "click", "figure", function( event ) {
+        event.preventDefault();
+        if($(this).next().hasClass('show')){
+            $(this).next().removeClass('show', 500, "easeOut" );
+        }
+        else {
+            $(this).next().addClass('show', 500, "easeIn" );
+        }
+    });
+
     // ----------------
     // Get Input
     // ----------------

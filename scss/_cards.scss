@@ -2,7 +2,6 @@ article {
     margin: 6px;
     height: auto;
     display: flex;
-    border: 1px solid red;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -29,9 +28,14 @@ figcaption {
 }
 
 .content {
-    width: 260px;
+    width: 0px;
     overflow: hidden;
     display: inline-block;
-    padding: 6px;
     box-sizing: border-box;
+    transition: all 0.6s;
+}
+
+.show {
+    width: 200px;
+    padding: 6px;
 }
