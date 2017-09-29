@@ -16,6 +16,7 @@ $(function () {
             success: function (response) {
                 console.log(response);
                 build(response, city);
+                chart(response);
             }
         });
     }
@@ -37,6 +38,7 @@ $(function () {
             
             instaCoords.push({
                 coords: {lat, lng},
+                likes: [item.likes.count],
                 content:`<h1>${item.user.username}</h1>
                 <p>${item.caption.text}</p>`,
                 image:item.images.low_resolution.url
@@ -122,7 +124,6 @@ $(function () {
     });
     
 
-
     // -------------
     // Google Maps
     // -------------
@@ -178,4 +179,42 @@ $(function () {
           }
         }
       }
+
+
+    // -------------
+    // Chart
+    // -------------
+
+
+    function chart(item){
+        let data = [];
+        let date = [];
+        for(var i = 0; i < item.data.length; i++){
+            data.push(item.data[i].likes.count);
+            date.push(item.data[i].created_time);
+        }
+
+        const ctx = document.getElementById("myChart").getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: date,
+                datasets: [{
+                    label: "My First dataset",
+                    data: data,
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(255,99,132,1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                }
+            }
+        });
+    }
+      
+
+
 });

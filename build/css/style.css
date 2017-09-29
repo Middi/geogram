@@ -103,9 +103,9 @@ strong {
   font-weight: 500; }
 
 input {
-  width: 240px;
+  width: 280px;
   border: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   background-color: white;
   border: 1px solid rgba(55, 55, 55, 0.4);
   padding: 4px;
