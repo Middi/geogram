@@ -38,7 +38,8 @@ $(function () {
             instaCoords.push({
                 coords: {lat, lng},
                 content:`<h1>${item.user.username}</h1>
-                <p>${item.caption.text}</p>`
+                <p>${item.caption.text}</p>`,
+                image:item.images.low_resolution.url
             });
 
             var media;
@@ -126,7 +127,7 @@ $(function () {
     // Google Maps
     // -------------
 
-    function initMap(caption){
+    function initMap(){
         var markers = [];
         // Map options
         var options = {
@@ -152,13 +153,18 @@ $(function () {
             position:props.coords,
             map:map,
           });
-
+          var image = props.image;
           var caption = props.content;
 
           // change new lines to <br>  
           caption = caption.replace(/(?:\r\n|\r|\n)/g, '<br />');
           // remove the hashtags
           caption = caption.slice(0, caption.indexOf("<br />."));
+
+          caption = `<div class="marker">
+                        <img src="${image}" class="marker-thumb" />
+                        <p>${caption}</p>
+                    </div>`;
   
           // Check content
           if(caption){

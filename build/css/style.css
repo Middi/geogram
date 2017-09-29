@@ -80,7 +80,26 @@ figcaption {
   width: 200px;
   padding: 6px; }
 
-body {
+header {
+  height: 50px;
+  width: 100%; }
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center; }
+
+.logo {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding-left: 6px; }
+
+strong {
+  font-weight: 500; }
+
+.wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr; }
 
@@ -104,3 +123,10 @@ main {
       flex-wrap: wrap;
   margin-top: 40px;
   padding: 10px; }
+
+.marker-thumb {
+  width: 100px;
+  height: auto; }
+
+.fa-map-marker {
+  color: #e74275; }
