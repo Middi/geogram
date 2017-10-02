@@ -91,7 +91,10 @@ header {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
 
 .logo {
   display: inline-block;
@@ -110,6 +113,12 @@ input {
   border: 1px solid rgba(55, 55, 55, 0.4);
   padding: 4px;
   margin: 0 8px; }
+
+.likes {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  text-align: right; }
 
 .wrapper {
   display: grid;

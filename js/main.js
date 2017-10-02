@@ -17,6 +17,7 @@ $(function () {
                 console.log(response);
                 build(response, city);
                 chart(response);
+                countLikes(response.data);
             }
         });
     }
@@ -26,6 +27,14 @@ $(function () {
         $('.data').empty();
     }
 
+    function countLikes(response){
+        var totalLikes =[];
+        response.forEach(function(item){
+            totalLikes.push(item.likes.count);
+            
+        });
+        $('#likes').html(`<i class="fa fa-heart" aria-hidden="true"></i> ${totalLikes.reduce((a, b) => a + b, 0)}`);
+    }
     // Build DOM, Called by request function
     function build(response, city) {
 

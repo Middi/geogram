@@ -12,6 +12,7 @@ header {
     padding: 14px 20px 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
@@ -35,6 +36,10 @@ input {
         margin: 0 8px;
 }
 
+.likes {
+    flex-grow: 2;
+    text-align: right;
+}
 .wrapper {
     display: grid;
     grid-template-columns: 45% auto;
