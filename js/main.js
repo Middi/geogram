@@ -31,9 +31,18 @@ $(function () {
         var totalLikes =[];
         response.forEach(function(item){
             totalLikes.push(item.likes.count);
-            
         });
-        $('#likes').html(`<i class="fa fa-heart" aria-hidden="true"></i> ${totalLikes.reduce((a, b) => a + b, 0)}`);
+
+        // format and reduce total likes
+        var commas = numberWithCommas(totalLikes);
+
+        $('#likes').html(`<i class="fa fa-heart" aria-hidden="true"></i> ${commas}`);
+    }
+
+    // Total Likes function reduce and format with commas
+    function numberWithCommas(arr) {
+        arr = arr.reduce((a, b) => a + b, 0);
+        return arr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     // Build DOM, Called by request function
     function build(response, city) {
