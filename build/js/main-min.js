@@ -153,24 +153,25 @@ $(function () {
     }
 
     // -------------
-    // Chart
+    // Chart.JS
     // -------------
-
-
     function chart(item) {
         var data = [];
         var date = [];
         for (var i = 0; i < item.data.length; i++) {
-            data.push(item.data[i].likes.count);
-
+            // Format Date coming back from Instagram
             var formatDate = new Date(parseInt(item.data[i].created_time) * 1000);
 
             var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             var year = formatDate.getFullYear();
             var month = months[formatDate.getMonth()];
-            var ate = formatDate.getDate();
-            var time = month + ', ' + ate + ' ' + year;
+            var day = formatDate.getDate();
+            var time = month + ', ' + day + ' ' + year;
+
+            // Push formatted date into Date Array
             date.push(time);
+            // Push likes into Data Array
+            data.push(item.data[i].likes.count);
         }
 
         var ctx = document.getElementById("myChart").getContext('2d');
@@ -188,7 +189,16 @@ $(function () {
             },
             options: {
                 legend: {
-                    display: false
+                    display: true
+                },
+                tooltips: {
+                    callbacks: {
+                        labelColor: function labelColor(tooltipItem, chart) {
+                            return {
+                                backgroundColor: 'rgba(231, 66, 117, 1.0)'
+                            };
+                        }
+                    }
                 }
             }
         });
